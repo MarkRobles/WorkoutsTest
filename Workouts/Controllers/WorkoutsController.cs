@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -11,6 +12,7 @@ namespace Workouts.Controllers
 {
     [Produces("application/json")]
     [Route("api/Workouts")]
+    [EnableCors("CorsPolicy")]
     public class WorkoutsController : Controller
     {
         private readonly WorkoutsContext _context;
@@ -19,7 +21,7 @@ namespace Workouts.Controllers
         {
             _context = context;
         }
-
+        
         // GET: api/Workouts
         [HttpGet]
         public IEnumerable<Workout> GetWorkout()
