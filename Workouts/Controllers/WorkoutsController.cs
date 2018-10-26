@@ -85,6 +85,7 @@ namespace Workouts.Controllers
         [HttpPost]
         public async Task<IActionResult> PostWorkout([FromBody] Workout workout)
         {
+           
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
