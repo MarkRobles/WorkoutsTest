@@ -13,14 +13,14 @@ namespace Workouts.Controllers
         [HttpGet]
         public IEnumerable<string> Get()
         {
-            return new string[] { "value1", "value2" };
+            return new string[] { "Nombre", "Marcos" };
         }
 
         // GET api/values/5
         [HttpGet("{id}")]
         public string Get(int id)
         {
-            return "value";
+            return "Marcos";
         }
 
         // POST api/values
