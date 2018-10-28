@@ -10,6 +10,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.EntityFrameworkCore;
 using Workouts.Models;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 namespace Workouts
 {
@@ -25,6 +26,7 @@ namespace Workouts
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
             //Agregar CORS y politica
             services.AddCors(options =>
             {
@@ -34,6 +36,13 @@ namespace Workouts
                     .AllowAnyHeader()
                     .AllowCredentials());
             });
+
+                services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                                            .AddJwtBearer(options =>
+                                            {
+                                            options.Authority = "https://dev-746034.oktapreview.com/oauth2/default";
+                                            options.Audience = "api://default";
+                                            });
 
             services.AddMvc();
 
@@ -49,6 +58,8 @@ namespace Workouts
                 app.UseDeveloperExceptionPage();
             }
             app.UseCors("CorsPolicy");
+
+            app.UseAuthentication();
             app.UseMvc();
         }
     }

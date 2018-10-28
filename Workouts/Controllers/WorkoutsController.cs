@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -10,6 +11,7 @@ using Workouts.Models;
 
 namespace Workouts.Controllers
 {
+    [Authorize]
     [Produces("application/json")]
     [Route("api/Workouts")]
     [EnableCors("CorsPolicy")]
